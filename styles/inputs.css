@@ -1,0 +1,58 @@
+.inputs-header {
+  list-style-type: none;
+  margin: 25px 0 0 0;
+  padding: 0;
+}
+.inputs-header li {
+  float: left;
+  margin: 0 5px 0 0;
+  width: 74px;
+  height: 32px;
+  position: relative;
+}
+
+.inputs-header label,
+.inputs-header input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.inputs-header input[type="radio"] {
+  opacity: 0.01;
+  z-index: 100;
+}
+
+.inputs-header input[type="radio"]:checked + label,
+.Checked + label {
+  background-color: #f0ecfb;
+  border: 1.5px solid #6741d9;
+  border-radius: 8px;
+  color: var(--color-brand-1);
+}
+.inputs-header label {
+  cursor: pointer;
+  z-index: 90;
+
+  border: none;
+  border-radius: 8px;
+  border: 1.5px solid var(--color-grey-5);
+  background-color: var(--fixed-white);
+  color: var(--color-grey-2);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  cursor: pointer;
+}
+/* .inputs-header label:hover {
+  background-color: #f0ecfb;
+  border: 1.5px solid #6741d9;
+  border-radius: 8px;
+  color: var(--color-brand-1);
+} */

@@ -3,7 +3,7 @@ const valuesCategory = ["Entrada", "Saída"];
 let insertedValues = [
   {
     id: 1,
-    value: 90.0,
+    value: 25.0,
     categoryID: 1,
   },
   {
@@ -16,4 +16,10 @@ let insertedValues = [
     value: 15.5,
     categoryID: 1,
   },
+  {
+    id: 4,
+    value: 100.0,
+    categoryID: 2,
+  },
 ];
+console.log(insertedValues);

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Control Finance</title>
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
+    <meta
+      name="description"
+      content="Control Finance - Seu controle financeiro"
+    />
+    <link rel="stylesheet" href="./styles/globalStyles.css" />
+    <link rel="stylesheet" href="./styles/buttons.css" />
+    <link rel="stylesheet" href="./styles/modal.css" />
+    <link rel="stylesheet" href="./styles/inputs.css" />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container-header">
+        <h2>Control <span>Finance</span></h2>
+        <button data-control-modal="modal-new" class="button-registerValue">
+          Registrar novo valor
+        </button>
+      </div>
+    </header>
+    <main id="app">
+      <div class="container-main">
+        <section class="header">
+          <p>Resumo financeiro</p>
+          <ul class="inputs-header">
+            <li>
+              <input type="radio" id="all" name="amount" />
+              <label for="all">Todos</label>
+            </li>
+            <li>
+              <input type="radio" id="in" name="amount" />
+              <label for="in">Entradas</label>
+            </li>
+            <li>
+              <input type="radio" id="out" name="amount" checked="checked" />
+              <label for="out">Saídas</label>
+            </li>
+          </ul>
+        </section>
+        <section class="result"></section>
+        <section class="sectionItens">
+          <!-- <div class="empty">
+            <h3>Nenhum valor cadastrado</h3>
+            <p>Registrar novo valor</p>
+          </div> -->
+          <ul class="valuesList"></ul>
+        </section>
+      </div>
+    </main>
+    <div class="div-modalWrapper" id="modal-new">
+      <div class="container-modal">
+        <div class="modal-header">
+          <h2>Registro de valor</h2>
+          <button data-control-modal="modal-new">X</button>
+        </div>
+        <p class="text">
+          Digite o valor e em seguida aperte no botão referente ao tipo de valor
+        </p>
+        <div class="modal-input">
+          <p>Valor</p>
+          <input id="newValue" type="number" placeholder="R$" />
+        </div>
+        <div class="values">
+          <ul class="inputs-header">
+            <li>
+              <input type="radio" id="in-modal" name="amount" />
+              <label for="in-modal">Entradas</label>
+            </li>
+            <li>
+              <input
+                type="radio"
+                id="out-modal"
+                name="amount"
+                checked="checked"
+              />
+              <label for="out-modal">Saídas</label>
+            </li>
+          </ul>
+        </div>
+        <div class="buttons">
+          <button data-control-modal="modal-new" class="cancel">
+            Cancelar
+          </button>
+          <button data-control-modal="modal-new" class="insert" id="addValue">
+            Inserir Valor
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="./scripts/modal.js"></script>
+    <script src="./valuesData.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
