@@ -39,7 +39,6 @@
 .inputs-header label {
   cursor: pointer;
   z-index: 90;
-
   border: none;
   border-radius: 8px;
   border: 1.5px solid var(--color-grey-5);
@@ -50,9 +49,40 @@
   line-height: 17px;
   cursor: pointer;
 }
-/* .inputs-header label:hover {
+.inputs-header label:hover {
   background-color: #f0ecfb;
   border: 1.5px solid #6741d9;
   border-radius: 8px;
   color: var(--color-brand-1);
-} */
+  z-index: 101;
+}
+#type {
+  width: 81px;
+  height: 32px;
+  border: 1.5px solid #f1f3f5;
+  border-radius: 8px;
+  background: #ffffff;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: #495057;
+}
+
+#type:hover {
+  background: #f0ecfb;
+  border: 1.5px solid #6741d9;
+  border-radius: 8px;
+  color: #6741d9;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+}
+#type:focus {
+  background: #f0ecfb;
+  border: 1.5px solid #6741d9;
+  border-radius: 8px;
+  color: #6741d9;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+}

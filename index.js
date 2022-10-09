@@ -1,184 +1,181 @@
-const tagUl = document.querySelector(".valuesList");
-const tagResults = document.querySelector(".result");
-const tagSection = document.querySelector(".sectionItens");
-const newValue = document.querySelector("#newValue");
-const addValue = document.querySelector("#addValue");
-let insertedValuesfilteredIn = [];
-let insertedValuesfilteredOut = [];
-let insertedValuesfilteredAll = [];
+//----------------------------- CAPTURANDO ELEMENTOS HTML
 
-// criando array apenas com a key value da database
-insertedValues.map((item) => {
-  item.value;
-  if (item.value > 0 && item.categoryID == 1) {
-    insertedValuesfilteredIn.push(item.value);
-  }
-});
-insertedValues.map((item) => {
-  item.value;
-  if (item.value > 0 && item.categoryID == 2) {
-    insertedValuesfilteredOut.push(item.value);
-  }
-});
-insertedValues.map((item) => {
-  item.value;
-  if (item.value > 0) {
-    insertedValuesfilteredAll.push(item.value);
-  }
-});
+const ulValues = document.querySelector(".valuesList");
+const btnInsertValue = document.getElementById("addValue");
+const inputValue = document.getElementById("newValue");
+const inputIn = document.getElementById("in-modal");
+const inputOut = document.getElementById("out-modal");
+const type = document.querySelector("#type");
+const sectionValues = document.querySelector(".sectionItens");
 
-// calculando o valor do array para depois utilizar no "soma dos valores"
-let countValuesAll = insertedValuesfilteredAll.reduce(
-  (previousValue, currentValue) => {
-    return previousValue + currentValue;
-  }
-);
-let countValuesIn = insertedValuesfilteredIn.reduce(
-  (previousValue, currentValue) => {
-    return previousValue + currentValue;
-  }
-);
-let countValuesOut = insertedValuesfilteredOut.reduce(
-  (previousValue, currentValue) => {
-    return previousValue + currentValue;
-  }
-);
+const filterAll = document.getElementById("all");
+const filterIn = document.getElementById("in");
+const filterOut = document.getElementById("out");
+const resultSum = document.querySelector(".resultSum");
 
-// renderizando valores adicionados a dataBase
+let insertedValues = [];
 
-function insertSumValuesAll() {
-  document.querySelector(".result").insertAdjacentHTML(
-    "afterbegin",
-    `<p>Soma dos valores</p>
-          <p>R$${countValuesAll.toFixed(2)}</p>`
-  );
-}
-function insertSumValuesIn() {
-  document.querySelector(".result").insertAdjacentHTML(
-    "afterbegin",
-    `<p>Soma dos valores</p>
-          <p>R$${countValuesIn.toFixed(2)}</p>`
-  );
-}
-function insertSumValuesOut() {
-  document.querySelector(".result").insertAdjacentHTML(
-    "afterbegin",
-    `<p>Soma dos valores</p>
-          <p>R$${countValuesOut.toFixed(2)}</p>`
-  );
-}
-
-// renderizando database
-function insertDataAll(dataBase) {
-  dataBase.forEach((element) => {
-    document.querySelector(".valuesList").insertAdjacentHTML(
-      "afterbegin",
-      `
-      <li>
-      <p>R$${element.value}</p>
-      <div>
-        <button class="button-in">${
-          element.categoryID === 1 ? `Entrada` : `Saída`
-        }</button>
-        <button class="button-trash"></button>
-      </div>
-    </li>
-      `
-    );
-  });
-}
-function insertDataIn(dataBase) {
-  dataBase.forEach((element) => {
-    if (element.categoryID == 1) {
-      document.querySelector(".valuesList").insertAdjacentHTML(
-        "afterbegin",
-        `
-      <li>
-      <p>R$${element.value.toFixed(2)}</p>
-      <div>
-        <button class="button-in">${
-          element.categoryID === 1 ? `Entrada` : `Saída`
-        }</button>
-        <button class="button-trash"></button>
-      </div>
-    </li>
-      `
-      );
-    }
-  });
-}
-function insertDataOut(dataBase) {
-  dataBase.forEach((element) => {
-    if (element.categoryID == 2) {
-      document.querySelector(".valuesList").insertAdjacentHTML(
-        "afterbegin",
-        `
-      <li>
-      <p>R$${element.value.toFixed(2)}</p>
-      <div>
-        <button class="button-in">${
-          element.categoryID === 1 ? `Entrada` : `Saída`
-        }</button>
-        <button class="button-trash"></button>
-      </div>
-    </li>
-      `
-      );
-    }
-  });
-}
-function insertEmptyDiv() {
-  document.querySelector(".sectionItens").insertAdjacentHTML(
-    "afterbegin",
-    `<div class="empty">
-      <h3>Nenhum valor cadastrado</h3>
-      <p>Registrar novo valor</p>
-    </div>`
-  );
-}
-function empty(dataBase) {
-  dataBase.indexOf((element) => {
-    if (element == -1) {
-      return insertEmptyDiv();
-    }
-  });
-}
-empty(insertedValues);
-// adicionando evento de clique
-
-const inputAll = document
-  .querySelector("#all")
-  .addEventListener("click", () => {
-    tagUl.innerHTML = "";
-    tagResults.innerHTML = "";
-    insertDataAll(insertedValues);
-    insertSumValuesAll();
-  });
-const inputIn = document.querySelector("#in").addEventListener("click", () => {
-  tagUl.innerHTML = "";
-  tagResults.innerHTML = "";
-  insertDataIn(insertedValues);
-  insertSumValuesIn(insertedValuesfilteredIn);
-});
-
-const inputOut = document
-  .querySelector("#out")
-  .addEventListener("click", () => {
-    tagUl.innerHTML = "";
-    tagResults.innerHTML = "";
-    insertDataOut(insertedValues);
-    insertSumValuesOut(insertedValuesfilteredOut);
-  });
-
-// adicionando novos valores
-addValue.onclick = () => {
-  insertedValues.push({
-    id: "",
-    value: parseInt(newValue.value),
-    categoryId: 1,
-  });
-  inputAll;
-  newValue = "";
-  tagUl.innerHTML = "";
-  tagResults.innerHTML = "";
+//------------------------------ RENDERIZANDO TODOS
+filterAll.onclick = () => {
+  ulValues.innerHTML = "";
+  resultSum.innerHTML = "";
+  setValuesAll();
+  sumAll();
 };
+
+//------------------------------ RENDERIZANDO ENTRADAS
+filterIn.onclick = () => {
+  ulValues.innerHTML = "";
+  resultSum.innerHTML = "";
+  setValuesIn();
+  sumIn();
+};
+
+//------------------------------ RENDERIZANDO SAIDAS
+filterOut.onclick = () => {
+  ulValues.innerHTML = "";
+  resultSum.innerHTML = "";
+  sumOut();
+  setValuesOut();
+};
+
+btnInsertValue.onclick = () => {
+  insertedValues.push({
+    value: Math.abs(inputValue.value).toFixed(2),
+    type: type.value,
+  });
+  setItensLocal();
+  inputValue.value = "";
+  setValuesAll();
+  sumAll();
+};
+//--------------------------------- Delete Values
+
+function deleteValues(index) {
+  insertedValues.splice(index, 1);
+  setItensLocal();
+  setValuesAll();
+  sumAll();
+}
+
+//Criar função responsável por receber um HTML e renderizar em tela
+
+// function render(array) {}
+
+function renderValues(element, index) {
+  let ul = document.querySelector(".valuesList").insertAdjacentHTML(
+    "afterbegin",
+    `
+    <li>
+    <p>R$${element.value}</p>
+    <div>
+      <button class="button-in">${element.type}</button>
+      <button onclick="deleteValues(${index})" class="button-trash"></button>
+    </div>
+  </li>
+    `
+  );
+}
+
+//-----------------------------------
+
+function setValuesAll() {
+  insertedValues = getItensLocal();
+  ulValues.innerHTML = "";
+  insertedValues.forEach((item, index) => {
+    renderValues(item, index);
+  });
+}
+
+function setValuesIn() {
+  insertedValues = getItensLocal();
+  ulValues.innerHTML = "";
+  insertedValues
+    .filter((element) => element.type === "Entrada")
+    .forEach((item, index) => {
+      renderValues(item, index);
+    });
+}
+
+function setValuesOut() {
+  insertedValues = getItensLocal();
+  ulValues.innerHTML = "";
+  insertedValues
+    .filter((element) => element.type === "Saida")
+    .forEach((item, index) => {
+      renderValues(item, index);
+    });
+}
+// --------------------------------- SOMA
+
+// --------------------------------- TOTAL
+function sumAll() {
+  const entryVaues = insertedValues
+    .filter((element) => element.type === "Entrada")
+    .map((value) => Number(value.value));
+
+  const outputVaues = insertedValues
+    .filter((element) => element.type === "Saida")
+    .map((value) => Number(value.value));
+
+  const sumEntries = entryVaues
+    .reduce((previousValue, currentValue) => previousValue + currentValue, 0)
+    .toFixed(2);
+
+  const sumOutputs = Math.abs(
+    outputVaues.reduce(
+      (previousValue, currentValue) => previousValue + currentValue,
+      0
+    )
+  ).toFixed(2);
+
+  let allValues = Number(sumEntries) + Number(sumOutputs);
+
+  resultSum.innerHTML = `R$ ${allValues},00`;
+}
+
+// --------------------------------- ENTRADAS
+
+function sumIn() {
+  const entryVaues = insertedValues
+    .filter((element) => element.type === "Entrada")
+    .map((value) => Number(value.value));
+
+  const sumEntries = entryVaues
+    .reduce((previousValue, currentValue) => previousValue + currentValue, 0)
+    .toFixed(2);
+
+  let allValues = Number(sumEntries);
+
+  resultSum.innerHTML = `R$ ${allValues},00`;
+}
+
+// --------------------------------- SAIDAS
+
+function sumOut() {
+  const outputVaues = insertedValues
+    .filter((element) => element.type === "Saida")
+    .map((value) => Number(value.value));
+
+  const sumOutputs = Math.abs(
+    outputVaues.reduce(
+      (previousValue, currentValue) => previousValue + currentValue,
+      0
+    )
+  ).toFixed(2);
+
+  let allValues = Number(sumOutputs);
+
+  resultSum.innerHTML = `R$ ${allValues},00`;
+}
+
+// ---------------------------------- LOCAL STORAGE
+
+const getItensLocal = () =>
+  JSON.parse(localStorage.getItem("local_values")) ?? [];
+
+const setItensLocal = () =>
+  localStorage.setItem("local_values", JSON.stringify(insertedValues));
+
+console.log(getItensLocal());
+// setValuesAll();

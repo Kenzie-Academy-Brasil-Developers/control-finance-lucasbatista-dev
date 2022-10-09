@@ -39,12 +39,15 @@
               <label for="in">Entradas</label>
             </li>
             <li>
-              <input type="radio" id="out" name="amount" checked="checked" />
+              <input type="radio" id="out" name="amount" />
               <label for="out">Saídas</label>
             </li>
           </ul>
         </section>
-        <section class="result"></section>
+        <section class="result">
+          <p>Soma dos valores</p>
+          <p class="resultSum">R$0,00</p>
+        </section>
         <section class="sectionItens">
           <!-- <div class="empty">
             <h3>Nenhum valor cadastrado</h3>
@@ -67,8 +70,8 @@
           <p>Valor</p>
           <input id="newValue" type="number" placeholder="R$" />
         </div>
-        <div class="values">
-          <ul class="inputs-header">
+        <div class="values divType">
+          <!-- <ul class="inputs-header">
             <li>
               <input type="radio" id="in-modal" name="amount" />
               <label for="in-modal">Entradas</label>
@@ -82,7 +85,12 @@
               />
               <label for="out-modal">Saídas</label>
             </li>
-          </ul>
+          </ul> -->
+          <label for="type">Tipo de Valor</label>
+          <select id="type">
+            <option>Entrada</option>
+            <option>Saida</option>
+          </select>
         </div>
         <div class="buttons">
           <button data-control-modal="modal-new" class="cancel">
@@ -95,7 +103,7 @@
       </div>
     </div>
     <script src="./scripts/modal.js"></script>
-    <script src="./valuesData.js"></script>
+
     <script src="./index.js"></script>
   </body>
 </html>
